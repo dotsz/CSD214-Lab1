@@ -7,8 +7,8 @@ public class Person implements Serializable {
     private String firstname;
     private String lastname;
     private Gender gender;
-    private Integer SIN;
-    private static int COUNT; // Object counter
+    private Integer sin;
+    private static int count; // Object counter
     public enum Gender{ Male, Female, Others } // Enums for the gender property of the Person class
 
     // Getters and Setters
@@ -30,25 +30,25 @@ public class Person implements Serializable {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-    public Integer getSIN() {
-        return SIN;
+    public Integer getSin() {
+        return sin;
     }
-    public void setSIN(Integer SIN) {
-        this.SIN = SIN;
+    public void setSin(Integer sin) {
+        this.sin = sin;
     }
-    public static int getCOUNT() {
-        return COUNT;
+    public static int getCount() {
+        return count;
     }
-    public static void setCOUNT(int COUNT) {
-        Person.COUNT = COUNT;
+    public static void setCount(int count) {
+        Person.count = count;
     }
 
     // Constructors
     public Person() { // Default empty parameter constructor
         this.firstname = "";
         this.lastname = "";
-        this.SIN = 0;
-        COUNT++;
+        this.sin = 0;
+        count++;
     }
 
     public Person(String firstname, String lastname){
@@ -57,19 +57,19 @@ public class Person implements Serializable {
         this.lastname = lastname;
     }
 
-    public Person(String firstname, String lastname, Integer SIN){
+    public Person(String firstname, String lastname, Integer sin){
         this();
         this.firstname = firstname;
         this.lastname = lastname;
-        this.SIN = SIN;
+        this.sin = sin;
     }
 
-    public Person(String firstname, String lastname, Gender gender, Integer SIN){
+    public Person(String firstname, String lastname, Gender gender, Integer sin){
         this();
         this.firstname = firstname;
         this.lastname = lastname;
         this.gender = gender;
-        this.SIN = SIN;
+        this.sin = sin;
 
     }
 
@@ -77,10 +77,10 @@ public class Person implements Serializable {
     @Override
     public String toString(){
         if(this.getGender() == null) {
-            return "Person: " + this.getFirstname() + " " + this.getLastname() + ", " + this.getSIN();
+            return "Person: " + this.getFirstname() + " " + this.getLastname() + ", " + this.getSin();
         }
         else {
-            return "Person: " + this.getFirstname() + " " + this.getLastname() + ", " + this.getGender() + ", " + this.getSIN();
+            return "Person: " + this.getFirstname() + " " + this.getLastname() + ", " + this.getGender() + ", " + this.getSin();
         }
 
     }
@@ -91,14 +91,18 @@ public class Person implements Serializable {
         if(this == o) return true; // compare the memory address of the two objects
         if(!(o instanceof Person person)) return false; // check if the object is an instance of the Person class
         // compare property values of the two objects
-        return this.getFirstname().equals(person.getFirstname()) && this.getLastname().equals(person.getLastname()) && this.getSIN().equals(person.getSIN());
+        return this.getFirstname().equals(person.getFirstname()) && this.getLastname().equals(person.getLastname()) && this.getSin().equals(person.getSin());
     }
 
     @Override
     public int hashCode() {
         // generate a hash code for the properties of the object
-        return Objects.hash(this.getFirstname(), this.getLastname(), this.getSIN());
+        return Objects.hash(this.getFirstname(), this.getLastname(), this.getSin());
     }
 
+    @Override
+    public void finalize() {
+        count--;
+    }
 
 }
