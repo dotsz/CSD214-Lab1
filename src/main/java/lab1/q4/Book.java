@@ -16,7 +16,7 @@ public class Book implements Serializable {
 
     private static int count;
 
-    enum Language {
+    public enum Language {
         English, French, Spanish, German, Italian, Dutch, Chinese, Japanese, Korean, Arabic, Hebrew, Russian, Other
     }
 
@@ -51,6 +51,14 @@ public class Book implements Serializable {
         this.Author = Author;
         this.isbn13 = isbn13;
         this.pageCount = pageCount;
+    }
+
+    // Constructors with Person object as parameters
+    public Book (String bookTitle, Person person, String isbn13){
+        this();
+        this.bookTitle = bookTitle;
+        this.Author = person.getFirstname() + " " + person.getLastname();
+        this.isbn13 = isbn13;
     }
 
     // Getters and Setters

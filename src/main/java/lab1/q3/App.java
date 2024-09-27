@@ -12,6 +12,13 @@ public class App implements Serializable {
         System.out.println(p1);
         System.out.println(p2);
         System.out.println(P3);
+
+        if(p1 == p2) {
+            System.out.println("equal");
+        }
+        else {
+            System.out.println("not equal");
+        }
     }
 
 
